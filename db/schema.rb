@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(version: 20170516094142) do
     t.index ["user_id"], name: "index_gears_on_user_id", using: :btree
   end
 
+  create_table "sizes", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_sizes_on_category_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -56,4 +64,5 @@ ActiveRecord::Schema.define(version: 20170516094142) do
 
   add_foreign_key "gears", "categories"
   add_foreign_key "gears", "users"
+  add_foreign_key "sizes", "categories"
 end

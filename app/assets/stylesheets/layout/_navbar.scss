@@ -10,6 +10,11 @@
   justify-content: space-between;
 }
 
+.navbar-transparent {
+  position: fixed;
+  z-index: -10;
+}
+
 /* Optional class to fix the navbar on top */
 .navbar-wagon-fixed {
   position: fixed;
