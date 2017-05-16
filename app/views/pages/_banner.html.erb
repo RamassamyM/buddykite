@@ -1,0 +1,29 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+url(<%= image_url ('bground' + rand(1..5).to_s + '.jpg') %>);">
+  <p class= "login-home">
+    <%= link_to t(".sign_in", default: "Sign up"), new_user_registration_path, class: "btn btn-sm btn-warning" %> &nbsp
+    <%= link_to t(".sign_in", default: "Login"), new_user_session_path, id: "login-home-link" %>
+  </p>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="banner-logo">
+          <%= image_tag "logo.png", id: "logo-banner" %>
+           <h1 id="logo-font">Buddykite</h1>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <div class="banner-tag">
+          <h1>Rent the perfect gear for your perfect kite session</h1>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= link_to t(".top_call_to_action", default: "search"), root_path, class: "btn btn-primary unmarged" %>
+      </div>
+    </div>
+  </div>
+</div>
