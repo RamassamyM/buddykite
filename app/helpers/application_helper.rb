@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def remove_footer_from_home
+    "footer-hidden" if is_home
+  end
+
   def navbar_home_change
     "navbar-transparent" if is_home
   end
