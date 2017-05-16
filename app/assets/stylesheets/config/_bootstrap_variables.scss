@@ -9,20 +9,20 @@ $body-bg:                 white;
 $font-size-base:          $base-size;
 $line-height-base:        $base-height;
 $headings-font-family:    $header-font;
-
-// Semantic color scheme
-// => http://getbootstrap.com/customize/#colors
-$gray-base:       $gray;
+//
+// // Semantic color scheme
+// // => http://getbootstrap.com/customize/#colors
+$gray-base:       $darkgray;
 $brand-primary:   $blue;
 $brand-success:   $green;
 $brand-info:      $yellow;
 $brand-danger:    $red;
 $brand-warning:   $orange;
 
-// Buttons / inputs radius
-$border-radius-base:  4px;
-$border-radius-large: 8px;
-$border-radius-small: 4px;
-
-$link-hover-decoration: none;
-$input-border-focus: $blue;
+// // Buttons / inputs radius
+// $border-radius-base:  4px;
+// $border-radius-large: 8px;
+// $border-radius-small: 4px;
+//
+// $link-hover-decoration: none;
+// $input-border-focus: $blue;
