@@ -7,5 +7,5 @@ class Gear < ApplicationRecord
   validates :model, presence: true
   validates :price, presence: true, numericality: { integer: true }
   validates :user_id, presence: true, numericality: { integer: true }
-  validates :category_id, presence: true, numericality: { integer: true }
+  validates :size_id, presence: true, numericality: { integer: true }
 end
