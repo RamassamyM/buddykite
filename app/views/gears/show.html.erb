@@ -1,6 +1,8 @@
 <div class="container">
   <div>
-    <!-- Insérer la map Ici avec l'ID ' map-->
+    <% if @gear.photo? %>
+    <%= cl_image_tag @gear.photo.path, width: 200, height: 300 %>
+    <% end %>
   </div>
   <div>
     <h2>Brand : <%= @gear.brand %></h2>
