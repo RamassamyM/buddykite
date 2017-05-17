@@ -8,8 +8,6 @@ class GearsController < ApplicationController
 
   def show
     @gear = Gear.find(params[:id])
-    @size = Size.find(@gear.size_id)
-    @category = Category.find(@size.category_id)
   end
 
 end
