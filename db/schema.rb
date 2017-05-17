@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 20170517124315) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "size_id"
+    t.float    "latitude"
+    t.float    "longitude"
     t.index ["size_id"], name: "index_gears_on_size_id", using: :btree
     t.index ["user_id"], name: "index_gears_on_user_id", using: :btree
   end

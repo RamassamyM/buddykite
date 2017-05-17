@@ -7,6 +7,6 @@ class Gear < ApplicationRecord
   validates :brand, presence: true
   validates :model, presence: true
   validates :price, presence: true, numericality: { integer: true }
-  validates :user_id, presence: true, numericality: { integer: true }
-  validates :size_id, presence: true, numericality: { integer: true }
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 end
