@@ -1,0 +1,7 @@
+<h2>Gears for : <%= @category %>...</h2>
+<div>
+  <% @gears.each do |gear| %>
+    <p> <%= gear.size.category.name + " " + gear.brand + " " + gear.model + " " + gear.size.name + " : " + gear.address + " / " + (gear.price / 100).round(0).to_s + "€ / " + gear.description %>
+    </p>
+    <% end %>
+</div>
