@@ -10,6 +10,8 @@ gem 'redis'
 gem 'devise'
 gem 'validates_timeliness', '~> 4.0'
 gem "geocoder"
+gem "coffee-rails"
+gem "gmaps4rails"
 
 gem 'sass-rails'
 gem 'jquery-rails'
@@ -19,6 +21,9 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
 
+source 'https://rails-assets.org' do
+  gem "rails-assets-underscore"
+end
 
 group :development, :test do
   gem 'binding_of_caller'
