@@ -15,7 +15,7 @@ class GearsController < ApplicationController
 
   private
     def search_params
-      params.require(:search).permit(:city, :date, :category_id)
+      params.require(:search).permit(:city, :date, :category_id, :photo)
     end
 
 end
