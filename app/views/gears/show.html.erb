@@ -1,10 +1,19 @@
 <!-- <h2>@gear.category</h2> -->
 
+<div class="container">
 
-<h2><%= @gear.brand %></h2>
-<p><%= @gear.address %></p>
-
-<p><%= @gear.model %></p>
-<p><%= @gear.price %></p>
-<p><%= @gear.description %></p>
-<!-- sizes et categories -->
+  <div>
+    <!-- Insérer la map Ici avec l'ID ' map-->
+  </div>
+  <div>
+    <h2>Brand : <%= @gear.brand %></h2>
+    <p>Address : <%= @gear.address %></p>
+    <p>Model : <%= @gear.model %></p>
+    <p>Price : <%= (@gear.price / 100).round(0) %> Euros</p>
+    <p>Description  : <%= @gear.description %></p>
+    <!-- sizes et categories -->
+    <p>Size  : <%= @gear.size.name %></p>
+    <p>Category  : <%=  @gear.size.category.name %></p>
+  </div>
+  <%= link_to "Index" , gears_path, :class => "btn btn-primary" %>
+</div>

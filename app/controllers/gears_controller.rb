@@ -1,3 +1,4 @@
+# top-level class documentation comment HERE
 class GearsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
@@ -6,10 +7,9 @@ class GearsController < ApplicationController
   end
 
   def show
-
     @gear = Gear.find(params[:id])
     @size = Size.find(@gear.size_id)
     @category = Category.find(@size.category_id)
-
   end
+
 end
