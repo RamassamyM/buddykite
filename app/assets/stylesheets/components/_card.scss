@@ -3,7 +3,9 @@
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
   background-size: cover !important;
   color: white;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   border-radius: 5px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.5);
   margin-bottom: 20px;
@@ -57,4 +59,22 @@
   left: 50px;
   font-size: 10px;
   text-transform: uppercase;
+}
+
+.gear-image-card {
+  border-radius: 5px 0 0 5px;
+  background-size: cover;
+  flex: 0 0 150px;
+  height: 100%;
+}
+.gear-infos-card {
+  background-color: $blue;
+  flex: 1 1 auto;
+  height: 100%;
+  position: relative;
+}
+
+.wrapper-show {
+  background-color: $lightgray;
+  height: 100vh;
 }
