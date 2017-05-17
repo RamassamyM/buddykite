@@ -68,15 +68,36 @@ print 'seeding gears...'
 gears_data = {
   sails: {
     brands: ['cabrinha', 'f one', 'gaastra', 'north kiteborading', 'slingshot', 'wainman'],
-    models: ['apollo 2017', 'chaos 2017', 'bandit 10 2017', 'jekyl 2013', 'neo 2017', 'evo 2017']
+    models: ['apollo 2017', 'chaos 2017', 'bandit 10 2017', 'jekyl 2013', 'neo 2017', 'evo 2017'],
+    photos: [
+      'http://www.glissup.fr/18918-ph_large/cabrinha-apollo-2017-aile-seule.jpg',
+      'http://www.glissup.fr/18915-ph_large/cabrinha-contra-2017-aile-seule.jpg',
+      'http://www.glissup.fr/18901-ph_large/cabrinha-fx-2017-aile-seule.jpg',
+      'http://www.glissup.fr/17154-ph_large/f-one-bandit-10-2017-aile-seule.jpg',
+      'http://www.glissup.fr/18911-ph_large/cabrinha-chaos-2017-aile-seule.jpg'
+    ]
   },
   boards: {
     brands: ['cabrinha', 'f one', 'firewire', 'flysurfer', 'nuclear bords', 'slingshot'],
-    models: ['spectrum 2017', 'trax hrd carbon', 'next 2016', 'fly split', 'kite baked potato', 'separa infinity']
+    models: ['spectrum 2017', 'trax hrd carbon', 'next 2016', 'fly split', 'kite baked potato', 'separa infinity'],
+    photos: [
+      'http://www.glissup.fr/16872-ph_large/cabrinha-spectrum-2017-h1.jpg',
+      'http://www.glissup.fr/19697-ph_large/f-one-trax-hrd-carbon-complete-2017.jpg',
+      'http://www.glissup.fr/8277-ph_large/flysurfer-fly-split-134x41cm.jpg',
+      'http://www.glissup.fr/5666-ph_large/firewire-kite-baked-potato-diamond-tail-fst.jpg',
+      'http://www.glissup.fr/12849-ph_large/foilboard-f-one-carbon-series-2016.jpg'
+    ]
   },
   harnesses: {
     brands: ['cabrinha', 'dakine', 'ion', 'manera', 'mystic', 'ride engine'],
-    models: ['c1 maniac 2016', 'c1 sulphure 2017', 'chameleon camo 2017', 'fusion 2017', 'vega 2017']
+    models: ['c1 maniac 2016', 'c1 sulphure 2017', 'chameleon camo 2017', 'fusion 2017', 'vega 2017'],
+    photos: [
+      'http://www.glissup.fr/19587-ph_large/harnais-dakine-c1-maniac-2016.jpg',
+      'http://www.glissup.fr/18403-ph_large/harnais-dakine-c1-sulphure-2017.jpg',
+      'http://www.glissup.fr/18417-ph_large/harnais-dakine-vega-2017.jpg',
+      'http://www.glissup.fr/16084-ph_large/harnais-dakine-nitrous-hd-2016.jpg',
+      'http://www.glissup.fr/18407-ph_large/harnais-dakine-chameleon-camo-2017.jpg'
+    ]
   }
 }
 
@@ -91,6 +112,7 @@ categories.each do |category|
     gear.description = Faker::Lorem.sentence
     gear.size = gear_category.sizes.sample
     gear.owner = User.all.sample
+    gear.photo_url = gears_data[category.to_sym][:photos].sample
     gear.save!
     print '.'
   end
