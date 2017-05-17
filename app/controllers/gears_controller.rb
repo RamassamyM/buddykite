@@ -6,5 +6,8 @@ class GearsController < ApplicationController
   end
 
   def show
+
+  @gear = Gear.find(params[:id])
+
   end
 end
