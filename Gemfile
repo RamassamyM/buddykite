@@ -13,12 +13,12 @@ gem 'validates_timeliness', '~> 4.0'
 gem "geocoder"
 gem 'cloudinary', '1.1.7'
 gem 'attachinary', github: 'assembler/attachinary'
-gem 'jquery-fileupload-rails'
-gem "coffee-rails"
 gem "gmaps4rails"
 
 gem 'sass-rails'
 gem 'jquery-rails'
+gem 'jquery-fileupload-rails'
+gem "coffee-rails"
 gem 'uglifier'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'

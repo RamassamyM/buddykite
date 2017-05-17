@@ -1,7 +1,22 @@
-<h2>Gears for : <%= @category %>...</h2>
-<div>
-  <% @gears.each do |gear| %>
-    <p> <%= gear.size.category.name + " " + gear.brand + " " + gear.model + " " + gear.size.name + " : " + gear.address + " / " + (gear.price / 100).round(0).to_s + "€ / " + gear.description %>
-    </p>
-    <% end %>
+<div class="wrapper-show">
+  <div class="all-padded content-block">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="header">
+            <h2>Gears for : <%= @category %>...</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <% @gears.each do |gear| %>
+          <div class="col-sm-6 col-md-4">
+            <%= link_to gear_path(gear) do %>
+              <%= render partial: 'card', locals: { item: gear } %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
