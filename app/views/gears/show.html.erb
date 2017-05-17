@@ -1,18 +1,55 @@
 <div class="container">
-  <div>
-    <% if @gear.photo? %>
-      <%= cl_image_tag @gear.photo.path, width: 200, height: 300 %>
-    <% end %>
+  <div class="row">
+    <div class=".col-xs-3">
+      <% if @gear.photo? %>
+        <%= cl_image_tag @gear.photo.path, width: 200, height: 300 %>
+      <% end %>
+    </div>
   </div>
-  <div>
-    <h2>Brand : <%= @gear.brand %></h2>
-    <p>Address : <%= @gear.address %></p>
-    <p>Model : <%= @gear.model %></p>
-    <p>Price : <%= (@gear.price / 100).round(0) %> Euros</p>
-    <p>Description  : <%= @gear.description %></p>
-    <!-- sizes et categories -->
-    <p>Size  : <%= @gear.size.name %></p>
-    <p>Category  : <%=  @gear.size.category.name %></p>
-  </div>
-  <%= link_to "Index" , gears_path, :class => "btn btn-primary" %>
 </div>
+
+<div class="container">
+  <div class="row">
+    <div class=".col-md-3">
+      <h2><strong>Gear information</strong></h2>
+      <p>Brand : <%= @gear.brand %></p>
+      <p>Address : <%= @gear.address %></p>
+      <p>Model : <%= @gear.model %></p>
+      <p>Price : <%= (@gear.price / 100).round(0) %> Euros</p>
+      <p>Description  : <%= @gear.description %></p>
+      <!-- sizes et categories -->
+      <h2><strong>Gear Size</strong></h2>
+      <p>Size  : <%= @gear.size.name %></p>
+      <p>Category  : <%=  @gear.size.category.name %></p>
+      <!-- Owner info -->
+      <h2><strong>Owner</strong></h2>
+      <p>First Name : <%=  @user.first_name %></p>
+      <p>Last Name : <%=  @user.last_name %></p>
+      <!-- Buttons -->
+      <%= link_to "Book request " , gears_path, :class => "btn booking" %>
+    </div>
+  </div>
+</div>
+
+<h2>Map</h2>
+
+  <div id="map" style="width: 100%; height: 600px;"></div>
+
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+    var handler = Gmaps.build('Google');
+    handler.buildMap({ internal: { id: 'map' } }, function() {
+    markers = handler.addMarkers(<%= raw @hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    if (markers.length == 0) {
+    handler.getMap().setZoom(2);
+    } else if (markers.length == 1) {
+    handler.getMap().setZoom(14);
+    }
+    });
+    });
+  <% end %>
+<% end %>
