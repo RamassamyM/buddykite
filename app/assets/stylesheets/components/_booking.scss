@@ -1,21 +1,14 @@
-.booking {
+.btn-booking {
     position: fixed;
     top: 86px;
     right: 50px;
-    height: 20%;
     z-index: 10;
-    width: 200px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    background-color: $red;
-    border: 2px solid $darkgray;
-    border-radius: 25px;
-    box-shadow: 10px 10px 5px #888888;
   }
 
   .booking:hover{
 
   }
+
+.wrapper-content-show {
+  padding: 50px;
+}
