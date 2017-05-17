@@ -1,8 +1,10 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
 url(<%= image_url ('bground' + rand(1..5).to_s + '.jpg') %>);">
   <p class= "login-home">
-    <%= link_to t(".sign_in", default: "Sign up"), new_user_registration_path, class: "btn btn-sm btn-warning" %> &nbsp
-    <%= link_to t(".sign_in", default: "Login"), new_user_session_path, id: "login-home-link" %>
+    <% unless user_signed_in? %>
+      <%= link_to t(".sign_in", default: "Sign up"), new_user_registration_path, class: "btn btn-sm btn-warning" %> &nbsp
+      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, id: "login-home-link" %>
+    <% end %>
   </p>
   <div class="container">
     <div class="row">
