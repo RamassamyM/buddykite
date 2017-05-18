@@ -1,11 +1,44 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
 url(<%= image_url ('bground' + rand(1..5).to_s + '.jpg') %>);">
-  <p class= "login-home">
-    <% unless user_signed_in? %>
-      <%= link_to t(".sign_in", default: "Sign up"), new_user_registration_path, class: "btn btn-sm btn-warning" %> &nbsp
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, id: "login-home-link" %>
+
+  <div class= "login-home">
+    <% if user_signed_in? %>
+        <div class="dropdown">
+          <% if current_user.photo? %>
+            <%= cl_image_tag current_user.photo.path, height: 40, width: 40, crop: :fill, class: "avatar-medium dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown"  %>
+          <% else %>
+            <%= image_tag 'user.png', class: "avatar-medium dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown"  %>
+          <% end %>
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+            <li>
+              <%= link_to "#" do %>
+                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to root_path do %>
+                <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+    <% else %>
+
+      <!-- Login text link -->
+      <%= link_to t(".sign_in", default: "Sign up"), new_user_registration_path, class: "btn btn-sm btn-danger" %> &nbsp
+      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: " left-marged navbar-wagon-link" %>
+
     <% end %>
-  </p>
+  </div>
+
+
+
+
   <div class="container">
     <div class="row">
       <div class="col-xs-12">

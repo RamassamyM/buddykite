@@ -1,23 +1,35 @@
-<div class="card">
-  <% if item.photo? %>
-    <div class="gear-image-card" style="background-image: url('<%= cl_image_path item.photo.path %>');">
-    </div>
-  <% else %>
-    <div class="gear-image-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-  url('<%= image_url('logo-blue.png')%>');">
+<div class="card-wrapper">
+  <%= link_to gear_path(item) do %>
+    <div class="card">
+      <% if item.photo? %>
+        <div class="card-img" style="background-image: url('<%= cl_image_path item.photo.path, height: 250, width: 300, crop: :fill %>');">
+        </div>
+      <% else %>
+        <div class="card-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+      url('<%= image_url('logo-blue.png')%>');">
+        </div>
+      <% end %>
+      <div class="card-infos">
+        <div class="card-brand">
+          <h3><%= item.brand %></h3>
+          <span><%= '⭐' * rand(1..5) %></span>
+        </div>
+        <div class="card-description">
+            <h2><%= item.model.capitalize + " - " + item.size.name %></h2>
+            <h2><%= (item.price / 100).round(0).to_s + "€/day"%></h2>
+        </div>
+
+      </div>
     </div>
   <% end %>
-  <div class="gear-infos-card">
-    <div class="card-category"><%= item.size.category.name %></div>
-    <div class="card-brand"><%= item.brand %></div>
-    <div class="card-description">
-        <h2><%= item.model + " - " + item.size.name %></h2>
-        <p><%= (item.price / 100).round(0).to_s + "€ - " + item.description + " - " + item.address %></p>
-    </div>
+  <div class="card-details">
     <% if item.owner.photo? %>
-      <%= cl_image_tag item.owner.photo.path, height: 30, width: 30, crop: :fill, class: "card-user avatar" %>
+      <%= cl_image_tag item.owner.photo.path, height: 30, width: 30, crop: :fill, class: "avatar right-marged" %>
     <% else %>
-      <%= image_tag 'user.png', class: "card-user avatar" %>
+      <%= image_tag 'user.png', class: "avatar" %>
     <% end %>
+    <%= item.owner.first_name.capitalize + ','%>
+    <%= item.address.capitalize %>
   </div>
 </div>
+
