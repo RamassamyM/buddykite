@@ -1,5 +1,8 @@
 require 'faker'
 
+  puts 'Destroying orders'
+  Order.destroy_all
+  puts 'Done !...'
 puts 'Destroying gears..'
 Gear.destroy_all
 puts 'Done !...'
@@ -14,7 +17,7 @@ User.destroy_all
 puts 'Done !...'
 
 users_first_name = %w(toto bob sylvain michel)
-users_last_name = ["leplusbeau", "lebricoleur", "Peigney", "Vedette"]
+users_last_name = ["le plus beau", "le bricoleur", "Peigney", "Vedette"]
 photos = %w(https://yt3.ggpht.com/-L0qrF11Bdog/AAAAAAAAAAI/AAAAAAAAAAA/qzPYeLuune4/s900-c-k-no-mo-rj-c0xffffff/photo.jpg http://www.infodimanche.com/upload/www.infodimanche.com/evenements/2008/05/zero_de_conduite__bob_le_brico_A_2009214112118_600.jpg https://avatars0.githubusercontent.com/u/466015?v=3&s=400 https://i.ytimg.com/vi/Eb2UECN1WXQ/maxresdefault.jpg)
 
 print 'Seeding users...'
@@ -29,6 +32,37 @@ print 'Seeding users...'
   user.save!
   print 'seeded ' + user.first_name + ' ' + user.last_name + '.....'
 end
+
+admin = User.new(
+  email: 'contact@gmail.com',
+  password: 'buddykite',
+  first_name: 'Christian',
+  last_name: 'Villaescusa'
+)
+admin.photo_url = 'https://avatars1.githubusercontent.com/u/25774894?v=3&s=400'
+admin.save!
+print 'seeded ' + admin.first_name + ' ' + admin.last_name + '.....'
+
+brice = User.new(
+  email: 'brice-du-06@gmail.com',
+  password: 'bricedenice',
+  first_name: 'Bice',
+  last_name: 'De Nice'
+)
+brice.photo_url = 'http://images.sudouest.fr/2016/01/04/57e100ab66a4bde778c6955a/default/1000/sur-le-tournage-brice-de-nice-3.jpg'
+brice.save!
+print 'seeded ' + brice.first_name + ' ' + brice.last_name + '.....'
+
+igor = User.new(
+  email: 'Igor-lebg-du-40@gmail.com',
+  password: 'igordhossegor',
+  first_name: 'Igor',
+  last_name: 'D\'Hossegor'
+)
+igor.photo_url = 'https://i.skyrock.net/8574/11948574/pics/307677317_small.jpg'
+igor.save!
+print 'seeded ' + igor.first_name + ' ' + igor.last_name + '.....'
+
 puts 'done seeding users.'
 
 categories = %w(sail board harness)
@@ -122,3 +156,37 @@ categories.each do |category|
   end
 end
 print 'done seeding gears!...'
+
+puts 'Seeding orders...'
+
+gears = Gear.all
+users = User.all
+reviews = ['Trop bien', 'Jt\'ais cassé', 'Pas mal', 'Nul...', 'Sa fart ?', 'C TRO B1']
+20.times do |i|
+  gear = gears.sample
+  order = Order.new(
+    user: users.sample,
+    gear: gears.sample,
+    start_at: Time.new + rand(0..10).day,
+    end_at: Time.new + rand(11..20).day
+  )
+  order.reviews = reviews.sample
+  case order.reviews
+  when reviews[0]
+    order.rating = 5
+  when reviews[1]
+    order.rating = 2
+  when reviews[2]
+    order.rating = 3
+  when reviews[3]
+    order.rating = 0
+  when reviews[4]
+    order.rating = 1
+  when reviews[5]
+    order.rating = 5
+  end
+  order.infos = "#{(gear.price / 100).round} € " + Faker::Lorem.paragraph
+  order.save!
+  print "..#{i + 1}"
+end
+print 'donne seeding orders!...'
