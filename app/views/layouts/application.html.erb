@@ -12,7 +12,7 @@
   </head>
   <body>
     <%= render 'shared/navbar' %>
-    <div class="page-wrapper">
+    <div class="page-wrapper <%= add_navbar_margin %>">
       <%= render 'shared/flashes' %>
       <%= yield %>
     </div>
