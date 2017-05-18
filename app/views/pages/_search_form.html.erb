@@ -1,6 +1,7 @@
 <%= simple_form_for :search, url: gears_path, html: { class: 'form-inline' }, method: :get do |f|%>
-  <%= f.input :city, placeholder: "Place", label: false %>
-  <%= f.input :date, placeholder: "Date", label: false %>
-  <%= f.input :category_id, collection: Category.all, label: false, prompt: "Choose gear" %>
+  <%= f.input :city, placeholder: "Place", label: false, required: false %>
+  <%= f.input :start_date, placeholder: "Start date", label: false, required: false %>
+  <%= f.input :end_date, placeholder: "End date", label: false, required: false %>
+  <%= f.input :category_id, collection: Category.all, label: false, prompt: "Choose gear", error: 'Please specify the category of gear you are looking for'%>
   <%= f.submit "Find", class: "btn btn-primary", :wrapper => :nested %>
 <% end %>
