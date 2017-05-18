@@ -38,10 +38,13 @@
     <h2>Booking dates</h2>
     <h3>TOTAL : </h3>
     <%= simple_form_for @order, url:gear_orders_path(@gear) do |f| %>
-    <%= f.input :start_at, as: :string %>
-    <%= f.input :end_at, as: :string %>
+    <input type="date" id="start">
+    <input type="date" id="end">
     <%= f.submit "Book Request", class: "btn btn-primary btn-block" %>
     <% end %>
+
+
+
   </div>
   <div>
     <h2>Map</h2>
@@ -51,7 +54,7 @@
 
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
-    $(document).ready(function() {
+    $(document).ready(function()
     var handler = Gmaps.build('Google');
     handler.buildMap({ internal: { id: 'map' } }, function() {
     markers = handler.addMarkers(<%= raw @hash.to_json %>);
@@ -66,3 +69,4 @@
     });
   <% end %>
 <% end %>
+
