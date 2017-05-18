@@ -18,7 +18,7 @@ module ApplicationHelper
   private
 
   def user_credential_pages
-    controller_name == 'devise/session' || 'devise/passwords' || 'devise/registration'
+    (controller_name == 'registrations') || (controller_name == 'sessions') || (controller_name == 'passwords')
   end
 
   def is_home
