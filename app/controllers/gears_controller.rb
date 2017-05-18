@@ -4,7 +4,7 @@ class GearsController < ApplicationController
 
   def index
     if search_params[:category_id].empty?
-      redirect_to root_path, alert: 'Please choose the gear category you are looking for'
+      redirect_back(fallback_location: root_path, alert: 'Please choose the gear category you are looking for')
     else
       @gears = Gear.select('gears.*')
                   .joins(:size)
