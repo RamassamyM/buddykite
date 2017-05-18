@@ -9,6 +9,7 @@ class GearsController < ApplicationController
       @gears = Gear.select('gears.*')
                   .joins(:size)
                   .where('sizes.category_id = ?' ,search_params[:category_id])
+                  .near(search_params[:city], 20)
       @category = Category.find(search_params[:category_id]).name
     end
   end
