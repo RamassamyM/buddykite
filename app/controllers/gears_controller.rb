@@ -3,10 +3,15 @@ class GearsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @gears = Gear.select('gears.*')
-                .joins(:size)
-                .where('sizes.category_id = ?' ,search_params[:category_id]).near(search_params[:city], 20)
-    @category = Category.find(search_params[:category_id]).name
+    if search_params[:category_id].empty?
+      redirect_to root_path, alert: 'Please choose the gear category you are looking for'
+    else
+      @gears = Gear.select('gears.*')
+                  .joins(:size)
+                  .where('sizes.category_id = ?' ,search_params[:category_id])
+                  .near(search_params[:city], 20)
+      @category = Category.find(search_params[:category_id]).name
+    end
   end
 
   def show
@@ -21,7 +26,7 @@ class GearsController < ApplicationController
 
   private
     def search_params
-      params.require(:search).permit(:city, :date, :category_id)
+      params.require(:search).permit(:city, :start_date, :end_date, :category_id)
     end
 
 end
