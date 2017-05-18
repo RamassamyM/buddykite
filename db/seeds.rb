@@ -112,7 +112,7 @@ categories.each do |category|
     gear.brand = gears_data[category.to_sym][:brands].sample
     gear.address = addresses.sample
     gear.model = gears_data[category.to_sym][:models].sample
-    gear.price = rand(10000..50000)
+    gear.price = rand(5..15)*100
     gear.description = Faker::Lorem.sentence
     gear.size = gear_category.sizes.sample
     gear.owner = User.all.sample
