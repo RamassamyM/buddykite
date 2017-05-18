@@ -4,23 +4,26 @@ class GearsController < ApplicationController
 
   def index
     @search_infos = search_params
-    session[:searched] = { city: @search_infos[:city],
-                          start_date: @search_infos[:start_date],
-                          end_date: @search_infos[:end_date],
-                          category_id: @search_infos[:category_id]
-                        }
-    category = Category.find(@search_infos[:category_id])
-    start_date = Date.parse(@search_infos[:start_date])
-    end_date = Date.parse(@search_infos[:end_date])
     if @search_infos[:category_id].empty?
       redirect_back(fallback_location: root_path, alert: 'Please choose the gear category you are looking for')
     else
+      category = Category.find(@search_infos[:category_id])
+      session[:searched] = { city: @search_infos[:city],
+                start_date: @search_infos[:start_date],
+                end_date: @search_infos[:end_date],
+                category_id: @search_infos[:category_id]
+              }
       if @search_infos[:city].empty?
         @gears = category.gears.where.not(latitude: nil, longitude: nil)
-      else
-        @gears = category.gears.joins(:orders)
-                  .where("((? - orders.end_at) * (orders.start_at - ?)) < 0", start_date, end_date)
+      elsif @search_infos[:start_date].empty? || @search_infos[:end_date].empty?
+        @gears = category.gears.where.not(latitude: nil, longitude: nil)
                   .near(@search_infos[:city], 20)
+      else
+        start_date = Date.parse(@search_infos[:start_date])
+        end_date = Date.parse(@search_infos[:end_date])
+        @gears = category.gears.joins(:orders)
+                .where("((? - orders.end_at) * (orders.start_at - ?)) < 0", start_date, end_date)
+                .near(@search_infos[:city], 20)
       end
       @hash = Gmaps4rails.build_markers(@gears) do |gear, marker|
         marker.lat gear.latitude
