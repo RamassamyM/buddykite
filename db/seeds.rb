@@ -1,14 +1,8 @@
 require 'faker'
 
-<<<<<<< HEAD
 puts 'Destroying orders'
 Order.destroy_all
 puts 'Done !...'
-=======
-  puts 'Destroying orders'
-  Order.destroy_all
-  puts 'Done !...'
->>>>>>> 555b1cbe5d788194246313a0fe6e9d2a8274bf88
 puts 'Destroying gears..'
 Gear.destroy_all
 puts 'Done !...'
