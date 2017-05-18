@@ -1,7 +1,7 @@
 <div class="navbar-wagon <%= navbar_home_change %>">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo-blue.png" %>
+    <%= image_tag "logo.png" %>
   <% end %>
   <!-- Search form -->
   <div class="navbar-wagon-search <%= hide_search_bar %> ">
@@ -16,7 +16,11 @@
       <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
-          <%= image_tag "http://placehold.it/30x30", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <% if current_user.photo? %>
+            <%= cl_image_tag current_user.photo.path, height: 30, width: 30, crop: :fill, class: "avatar-medium right-marged dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown"  %>
+          <% else %>
+            <%= image_tag 'user.png', class: "avatar-medium dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown"  %>
+          <% end %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
               <%= link_to "#" do %>
@@ -40,13 +44,10 @@
     <% else %>
 
       <!-- Login text link -->
-      <%= link_to t(".sign_in", default: "Sign up"), new_user_registration_path, class: "btn btn-sm btn-warning" %> &nbsp
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-link" %>
+      <%= link_to t(".sign_in", default: "Sign up"), new_user_registration_path, class: "btn btn-sm btn-danger" %> &nbsp
+      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: " left-marged navbar-wagon-link" %>
 
     <% end %>
-
-    <!-- Button (call-to-action) -->
-    <!-- <%= link_to t(".top_call_to_action", default: "Post stuff"), "#", class: "navbar-wagon-item navbar-wagon-button btn" %> -->
   </div>
 
   <!-- Dropdown list appearing on mobile only -->

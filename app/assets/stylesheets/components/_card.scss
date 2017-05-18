@@ -1,77 +1,71 @@
+.card-wrapper {
+  margin: 0 0 50px 0;
+}
+
 .card {
-  height: 175px;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
-  background-size: cover !important;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 5px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.5);
-  margin-bottom: 20px;
-}
-
-.card:hover  {
-  opacity: 0.6;
-}
-
-.card-user {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-}
-.card-category {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 10px;
-  text-transform: uppercase;
-}
-.card-description {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-}
-.card-description h2 {
-  font-size: 24px;
-}
-.card-description p {
-  font-size: 13px;
+  background-color: #fff;
+  border-radius: 3px;
+  color: $darkgray;
+  font-size: 11px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+  height: 330px;
+  padding: 10px;
+  &:hover {
+    opacity: 0.6;
   }
-.card-link {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  z-index:2;
-  background: black;
-  opacity: 0;
-}
-.card-link:hover{
-  opacity: 0.1;
 }
 
+.card-img {
+  background-size: cover;
+  height: 250px;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.07);
+}
+
+.card-details {
+  line-height: 1.2;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  max-height: 25px;
+  margin: 12px 0 0 0;
+  padding: 0 0 0 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: $gray;
+}
+
+.card-infos {
+  background-color: transparent;
+  height: calc(100% - 250px);
+  padding: 10px 0 10px 0;
+}
 
 .card-brand {
-  position: absolute;
-  top: 10px;
-  left: 50px;
-  font-size: 10px;
+  width: 100%;
+  padding-right: 5px;
   text-transform: uppercase;
+  color: $gray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h3 {
+    font-size: 14px;
+    margin: 0;
+  }
+  span {
+    font-size: 16px;
+  }
 }
 
-.gear-image-card {
-  border-radius: 5px 0 0 5px;
-  background-size: cover;
-  flex: 0 0 150px;
-  height: 100%;
+.card-description {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h2 {
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }
-.gear-infos-card {
-  background-color: $blue;
-  flex: 1 1 auto;
-  height: 100%;
-  position: relative;
-}
-
 

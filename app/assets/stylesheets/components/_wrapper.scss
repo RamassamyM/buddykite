@@ -1,8 +1,14 @@
 .wrapper-index {
-  background-color: $lightgray;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 50px 50px 100px 50px;
 }
 
 .wrapper-show {
   padding: 50px;
+}
+
+.page-wrapper{
+  margin-top: 70px;
+  min-height: 100%;
+  background-color: $lightgray;
 }
