@@ -5,7 +5,28 @@
     z-index: 10;
   }
 
-  .booking:hover{
+.btn-booking:hover{
 
   }
 
+.frm-booking {
+  padding: 10px;
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background-color: white;
+  height:60%;
+  width: 30%;
+  z-index: 9;
+  box-shadow: 3px, 3px, 3px, gray;
+  vertical-align: center;
+  border-radius: 3px;
+}
+
+.bg-gray{
+  background-color: $darkergray;
+  color:white;
+  text-align: center;
+  font-size: 20px;
+
+}

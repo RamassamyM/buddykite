@@ -16,7 +16,7 @@
         <p>Brand : <%= @gear.brand %></p>
         <p>Address : <%= @gear.address %></p>
         <p>Model : <%= @gear.model %></p>
-        <p>Price : <%= (@gear.price / 100).round(0) %> Euros</p>
+        <p>Price : <%= (@gear.price / 100).round(0) %> €/day</p>
         <p>Description  : <%= @gear.description %></p>
         <!-- sizes et categories -->
         <h2><strong>Gear Size</strong></h2>
@@ -27,11 +27,22 @@
         <p>First Name : <%=  @user.first_name %></p>
         <p>Last Name : <%=  @user.last_name %></p>
         <!-- Buttons -->
-        <%= link_to "Book request " , gears_path, :class => "btn btn-danger btn-booking btn-lg" %>
       </div>
     </div>
   </div>
 
+  <div class="frm-booking">
+    <div class="bg-gray">
+      <p> <%= (@gear.price / 100).round(0) %>€/day </p>
+    </div>
+    <h2>Booking dates</h2>
+    <h3>TOTAL : </h3>
+    <%= simple_form_for @order, url:gear_orders_path(@gear) do |f| %>
+    <%= f.input :start_at, as: :string %>
+    <%= f.input :end_at, as: :string %>
+    <%= f.submit "Book Request", class: "btn btn-primary btn-block" %>
+    <% end %>
+  </div>
   <div>
     <h2>Map</h2>
     <div id="map" style="width: 100%; height: 600px;"></div>

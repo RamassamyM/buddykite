@@ -33,6 +33,7 @@ class GearsController < ApplicationController
       marker.lat gear.latitude
       marker.lng gear.longitude
     end
+    @order = Order.new
   end
 
   private
