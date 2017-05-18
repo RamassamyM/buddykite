@@ -1,0 +1,46 @@
+<h1>je suis une vue !!!</h1>
+
+<%= current_user.first_name %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-4">
+          <h3>my orders</h3>
+          <% @user_orders.each do |order| %>
+            <div class="order">
+              <%= image_tag cl_image_path(order.gear.photo.path), class: "order-image hidden-xs" %>
+              <div class='order-body'>
+                <div>
+                  <h3><%= order.gear.brand %></h3>
+                  <p><%= order.gear.model %></p>
+                  <p class="price"><%= compute_order_price(order) %>€ (<%= gear_price(order) %>€/day)</p>
+                  <p>from : <%= order.start_at %></p>
+                  <p>to : <%= order.end_at %></p>
+                  <hr>
+                  <p><%= order.reviews %> &nbsp <%= '⭐' * order.rating %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-sm-4">
+          <h3>My gears</h3>
+          <% @owner_orders.each do |order| %>
+            <div class="order">
+              <%= image_tag cl_image_path(order.gear.photo.path), class: "order-image hidden-xs" %>
+              <div class='order-body'>
+                <div>
+                  <h3><%= order.gear.brand %></h3>
+                  <p><%= order.gear.model %></p>
+                  <p class="price"><%= compute_order_price(order) %>€ (<%= gear_price(order) %>€/day)</p>
+                  <p>from : <%= order.start_at %></p>
+                  <p>to : <%= order.end_at %></p>
+                  <hr>
+                  <p><%= order.reviews %> &nbsp <%= '⭐' * order.rating %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+    </div>
+</div>
