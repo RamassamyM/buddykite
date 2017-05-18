@@ -12,6 +12,13 @@ module ApplicationHelper
     "hidden" if is_home
   end
 
+  def add_navbar_margin
+    if is_home
+    else
+      "page-wrapper-navbar-margin"
+    end
+  end
+
   def navbar_home_change
     if is_home
       "hidden"

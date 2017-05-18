@@ -3,19 +3,18 @@ class GearsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    if search_params[:category_id].empty?
+    if search_infos[:category_id].empty?
       redirect_back(fallback_location: root_path, alert: 'Please choose the gear category you are looking for')
     else
-      if search_params[:city].empty?
-        @gears = Gear.select('gears.*')
-                  .joins(:size)
-                  .where('sizes.category_id = ?' ,search_params[:category_id])
-                  .where.not(latitude: nil, longitude: nil)
+      if search_infos[:city].empty?
+        @gears = Category.find(search_infos[:category_id])
+                  .gears.where.not(latitude: nil, longitude: nil)
       else
-        @gears = Gear.select('gears.*')
-                    .joins(:size)
-                    .where('sizes.category_id = ?' ,search_params[:category_id])
-                    .near(search_params[:city], 20)
+        @gears = Category.find(search_infos[:category_id])
+                  .gears.joins(:orders)
+                  .where("((? - orders.end_at) * (orders.start_at - ?)) < 0",
+                      Date.parse(search_infos[:start_date]), Date.parse(search_infos[:end_date]))
+                  .near(search_infos[:city], 20)
       end
       @hash = Gmaps4rails.build_markers(@gears) do |gear, marker|
         marker.lat gear.latitude
@@ -33,7 +32,6 @@ class GearsController < ApplicationController
       marker.lat gear.latitude
       marker.lng gear.longitude
     end
-    @order = Order.new
   end
 
   private
