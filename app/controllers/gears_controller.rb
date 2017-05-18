@@ -3,6 +3,7 @@ class GearsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
+    search_infos = search_params
     if search_infos[:category_id].empty?
       redirect_back(fallback_location: root_path, alert: 'Please choose the gear category you are looking for')
     else
