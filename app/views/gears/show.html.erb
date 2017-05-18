@@ -37,10 +37,10 @@
     </div>
     <h2>Booking dates</h2>
     <h3>TOTAL : </h3>
-    <%= simple_form_for @order, url:gear_orders_path(@gear) do |f| %>
-    <%= f.input :start_at, as: :string %>
-    <%= f.input :end_at, as: :string %>
-    <%= f.submit "Book Request", class: "btn btn-primary btn-block" %>
+    <%= simple_form_for [@gear, @order] do |f| %>
+      <%= f.input :start_at, as: :string%>
+      <%= f.input :end_at, as: :string %>
+      <%= f.submit "Book Request", class: "btn btn-primary btn-block" %>
     <% end %>
   </div>
   <div>
