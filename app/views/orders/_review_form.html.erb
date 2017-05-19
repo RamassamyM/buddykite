@@ -1,0 +1,5 @@
+<%= simple_form_for order do |f| %>
+  <%= f.input :reviews %>
+  <%= f.input :rating, collection: (1..5) %>
+  <%= f.submit "Send review", class: "btn btn-primary btn-block" %>
+<% end %>

@@ -1,10 +1,12 @@
 .order {
   border: 1px solid red;
-  display: flex;
-  align-items: center;
   padding: 10px;
   border-radius: 3px;
   transition: all 0.15s ease;
+  &-wrap {
+    display: flex;
+    align-items: center;
+  }
 }
 
 /* Body design */
@@ -100,4 +102,14 @@
   top: 10px;
   right: 10px;
   font-size: 16px;
+}
+
+.review {
+  border: 1px solid red;
+  &-header {
+    cursor: pointer;
+    p {
+      margin: 0px;
+    }
+  }
 }
