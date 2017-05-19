@@ -1,10 +1,5 @@
 module ApplicationHelper
 
-  def render_order_form(order)
-    @order = order
-    render 'shared/review_form'
-  end
-
   def compute_order_price(order)
     gear_price(order) * ((order.end_at - order.start_at).to_i + 1 )
   end
