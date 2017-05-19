@@ -3,6 +3,7 @@ class Gear < ApplicationRecord
   belongs_to :owner, class_name: :User, foreign_key: :user_id
   has_many :orders
   has_attachment :photo
+
   validates :address, presence: true
   validates :brand, presence: true
   validates :model, presence: true

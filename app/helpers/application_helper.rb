@@ -1,6 +1,22 @@
 module ApplicationHelper
+
+  def compute_order_price(order)
+    gear_price(order) * ((order.end_at - order.start_at).to_i + 1 )
+  end
+
+  def gear_price(order)
+    eval(order.infos)[:gear_price]
+  end
+
   def remove_footer_from_home
     "hidden" if is_home
+  end
+
+  def add_navbar_margin
+    if is_home
+    else
+      "page-wrapper-navbar-margin"
+    end
   end
 
   def navbar_home_change

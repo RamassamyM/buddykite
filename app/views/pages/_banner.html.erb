@@ -28,16 +28,10 @@ url(<%= image_url ('bground' + rand(1..5).to_s + '.jpg') %>);">
           </ul>
         </div>
     <% else %>
-
-      <!-- Login text link -->
       <%= link_to t(".sign_in", default: "Sign up"), new_user_registration_path, class: "btn btn-sm btn-danger" %> &nbsp
       <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: " left-marged navbar-wagon-link" %>
-
     <% end %>
   </div>
-
-
-
 
   <div class="container">
     <div class="row">

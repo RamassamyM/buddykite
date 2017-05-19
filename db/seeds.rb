@@ -46,7 +46,7 @@ print 'seeded ' + admin.first_name + ' ' + admin.last_name + '.....'
 brice = User.new(
   email: 'brice-du-06@gmail.com',
   password: 'bricedenice',
-  first_name: 'Bice',
+  first_name: 'Brice',
   last_name: 'De Nice'
 )
 brice.photo_url = 'http://images.sudouest.fr/2016/01/04/57e100ab66a4bde778c6955a/default/1000/sur-le-tournage-brice-de-nice-3.jpg'
@@ -165,11 +165,12 @@ users = User.all
 reviews = ['Trop bien', 'Jt\'ais cassé', 'Pas mal', 'Nul...', 'Sa fart ?', 'C TRO B1']
 20.times do |i|
   gear = gears.sample
+  start_date = Date.today + rand(0..10).day
   order = Order.new(
     user: users.sample,
     gear: gears.sample,
-    start_at: Date.today + rand(0..10).day,
-    end_at: Date.today + rand(11..20).day
+    start_at: start_date,
+    end_at: start_date + rand(11..20).day
   )
   order.reviews = reviews.sample
   case order.reviews
@@ -186,7 +187,10 @@ reviews = ['Trop bien', 'Jt\'ais cassé', 'Pas mal', 'Nul...', 'Sa fart ?', 'C T
   when reviews[5]
     order.rating = 5
   end
-  order.infos = "#{(gear.price / 100).round}€ " + Faker::Lorem.sentence
+  order.infos = {
+    gear_price: (gear.price / 100).round,
+    description: Faker::Lorem.sentence
+    }
   order.save!
   print "..#{i + 1}"
 end
