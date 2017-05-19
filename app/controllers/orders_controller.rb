@@ -7,9 +7,11 @@ class OrdersController < ApplicationController
 
   def create
     @gear = Gear.find(params[:gear_id])
-    order_info = order_params
+    order_info = {}
     order_info[:start_at] = Date.parse(order_params[:start_at])
     order_info[:end_at] = Date.parse(order_params[:end_at])
+    order_info[:user] = current_user
+    order_info[:infos] = @gear.price
     @new_order = @gear.orders.new(order_info)
     if @new_order.save
       redirect_to orders_path

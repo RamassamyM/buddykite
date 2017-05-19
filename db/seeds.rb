@@ -187,10 +187,7 @@ reviews = ['Trop bien', 'Jt\'ais cassé', 'Pas mal', 'Nul...', 'Sa fart ?', 'C T
       order.rating = 5
     end
   end
-  order.infos = {
-    gear_price: (order.gear.price / 100).round,
-    description: order.gear.description
-    }
+  order.infos = (order.gear.price / 100).round
   order.save!
   print "..#{i + 1}"
 end
@@ -200,10 +197,7 @@ order = Order.new(
   start_at: Date.today - 5.day,
   end_at: Date.today
 )
-order.infos = {
-  gear_price: (order.gear.price / 100).round,
-  description: order.gear.description
-  }
+order.infos = (order.gear.price / 100).round
 order.save!
 print "..21.."
 
