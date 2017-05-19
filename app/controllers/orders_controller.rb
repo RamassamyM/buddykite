@@ -18,10 +18,23 @@ class OrdersController < ApplicationController
     end
   end
 
+  def update
+    order = Order.find(params[:id])
+    if order.update(review_params)
+      redirect_to orders_path
+    else
+      render 'orders/index'
+    end
+  end
+
 private
 
 def order_params
   params.require(:order).permit(:start_at, :end_at)
+end
+
+def review_params
+  params.require(:order).permit(:reviews, :rating)
 end
 
 end
