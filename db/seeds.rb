@@ -17,7 +17,7 @@ User.destroy_all
 puts 'Done !...'
 
 users_first_name = %w(toto bob sylvain michel)
-users_last_name = ["le plus beau", "le bricoleur", "Peigney", "Vedette"]
+users_last_name = ['le plus beau', 'le bricoleur', 'Peigney', 'Vedette']
 photos = %w(https://yt3.ggpht.com/-L0qrF11Bdog/AAAAAAAAAAI/AAAAAAAAAAA/qzPYeLuune4/s900-c-k-no-mo-rj-c0xffffff/photo.jpg http://www.infodimanche.com/upload/www.infodimanche.com/evenements/2008/05/zero_de_conduite__bob_le_brico_A_2009214112118_600.jpg https://avatars0.githubusercontent.com/u/466015?v=3&s=400 https://i.ytimg.com/vi/Eb2UECN1WXQ/maxresdefault.jpg)
 
 print 'Seeding users...'
@@ -26,7 +26,7 @@ print 'Seeding users...'
     email: Faker::Internet.email,
     password: Faker::Internet.password,
     first_name: users_first_name[num],
-    last_name: users_last_name[num],
+    last_name: users_last_name[num]
   )
   user.photo_url = photos[num]
   user.save!
@@ -99,7 +99,6 @@ sizes_data.each do |key, value|
 end
 print 'done seeding sizes!...'
 
-
 print 'seeding gears...'
 gears_data = {
   sail: {
@@ -146,7 +145,7 @@ categories.each do |category|
     gear.brand = gears_data[category.to_sym][:brands].sample
     gear.address = addresses.sample
     gear.model = gears_data[category.to_sym][:models].sample
-    gear.price = rand(5..15)*100
+    gear.price = rand(5..15) * 100
     gear.description = Faker::Lorem.sentence
     gear.size = gear_category.sizes.sample
     gear.owner = User.all.sample
@@ -164,34 +163,48 @@ gears = Gear.all
 users = User.all
 reviews = ['Trop bien', 'Jt\'ais cassé', 'Pas mal', 'Nul...', 'Sa fart ?', 'C TRO B1']
 20.times do |i|
-  gear = gears.sample
-  start_date = Date.today + rand(0..10).day
+  start_date = Date.today + rand(-30..10).day
   order = Order.new(
     user: users.sample,
     gear: gears.sample,
     start_at: start_date,
-    end_at: start_date + rand(11..20).day
+    end_at: start_date + rand(0..10).day
   )
-  order.reviews = reviews.sample
-  case order.reviews
-  when reviews[0]
-    order.rating = 5
-  when reviews[1]
-    order.rating = 2
-  when reviews[2]
-    order.rating = 3
-  when reviews[3]
-    order.rating = 0
-  when reviews[4]
-    order.rating = 1
-  when reviews[5]
-    order.rating = 5
+  if order.end_at <= Date.today
+    order.reviews = reviews.sample
+    case order.reviews
+    when reviews[0]
+      order.rating = 5
+    when reviews[1]
+      order.rating = 2
+    when reviews[2]
+      order.rating = 3
+    when reviews[3]
+      order.rating = 0
+    when reviews[4]
+      order.rating = 1
+    when reviews[5]
+      order.rating = 5
+    end
   end
   order.infos = {
-    gear_price: (gear.price / 100).round,
-    description: Faker::Lorem.sentence
+    gear_price: (order.gear.price / 100).round,
+    description: order.gear.description
     }
   order.save!
   print "..#{i + 1}"
 end
+order = Order.new(
+  user: User.where(first_name: 'Christian').first,
+  gear: gears.sample,
+  start_at: Date.today - 5.day,
+  end_at: Date.today
+)
+order.infos = {
+  gear_price: (order.gear.price / 100).round,
+  description: order.gear.description
+  }
+order.save!
+print "..21.."
+
 print 'donne seeding orders!...'
