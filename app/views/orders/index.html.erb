@@ -9,18 +9,18 @@
             <div class='order-body'>
               <h3><%= order.gear.brand %></h3>
               <p><%= order.gear.model %></p>
-              <p class="price"><%= compute_order_price(order) %>€ (<%= gear_price(order) %>€/day)</p>
               <p>from : <%= order.start_at.strftime(format = '%d/%m/%Y') %></p>
               <p>to : <%= order.end_at.strftime(format = '%d/%m/%Y') %></p>
+              <p><strong><%= compute_order_price(order) %>€</strong> (<%= gear_price(order) %>€/day)</p>
             </div>
           </div>
           <% if order.end_at <= Date.today %>
             <div class="review">
-              <div class="review-header text-center">
+              <div class="wrapper text-center">
                 <p>show review</p>
                 <i class="fa fa-angle-down"></i>
               </div>
-              <div class="review-content">
+              <div class="content">
                 <% if !order.reviews.nil? %>
                 <div>
                   <p><%= order.reviews %> &nbsp <%= '⭐' * order.rating %></p>
@@ -40,24 +40,30 @@
       <h3>My gears</h3>
       <% @owner_orders.each do |order| %>
         <div class="order">
-          <%= image_tag cl_image_path(order.gear.photo.path), class: "order-image hidden-xs" %>
-          <div class='order-body'>
-            <div>
+          <div class="order-wrap">
+            <%= image_tag cl_image_path(order.gear.photo.path), class: "order-image hidden-xs" %>
+            <div class='order-body'>
               <h3><%= order.gear.brand %></h3>
               <p><%= order.gear.model %></p>
-              <p class="price"><%= compute_order_price(order) %>€ (<%= gear_price(order) %>€/day)</p>
               <p>from : <%= order.start_at.strftime(format = '%d/%m/%Y') %></p>
               <p>to : <%= order.end_at.strftime(format = '%d/%m/%Y') %></p>
-              <% unless order.reviews.nil? %>
-                <hr>
-                <p><%= order.reviews %> &nbsp <%= '⭐' * order.rating %></p>
-              <% end %>
+              <p><strong><%= compute_order_price(order) %>€</strong> (<%= gear_price(order) %>€/day)</p>
             </div>
           </div>
-          <% unless order.reviews.nil? %>
-            <p>show review</p>
-            <i class="fa fa-angle-down"></i>
-            <%= order.reviews %> &nbsp <%= '⭐' * order.rating %>
+          <% if order.end_at <= Date.today %>
+            <div class="review">
+              <div class="wrapper text-center">
+                <p>show review</p>
+                <i class="fa fa-angle-down"></i>
+              </div>
+              <div class="content">
+                <% if !order.reviews.nil? %>
+                <div>
+                  <p><%= order.reviews %> &nbsp <%= '⭐' * order.rating %></p>
+                </div>
+                <% end %>
+              </div>
+            </div>
           <% end %>
         </div>
       <% end %>
