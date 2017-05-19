@@ -1,5 +1,5 @@
 <%= simple_form_for [gear, order] do |f| %>
       <%= f.input :start_at, as: :string, input_html: { value: session[:searched][:start_date], class: "input-date" }%>
-      <%= f.input :end_at, as: :string, input_html: { value: session[:searched][:start_date], class: "input-date" } %>
+      <%= f.input :end_at, as: :string, input_html: { value: session[:searched][:end_date], class: "input-date" } %>
       <%= f.submit "Book Request", class: "btn btn-primary btn-block" %>
     <% end %>
