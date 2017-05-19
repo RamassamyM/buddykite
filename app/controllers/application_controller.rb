@@ -9,4 +9,9 @@ class ApplicationController < ActionController::Base
     # For additional in app/views/devise/registrations/edit.html.erb
     devise_parameter_sanitizer.permit(:account_update, keys: [:username])
   end
+
+  def set_searched_in_session
+    session[:searched] ||= {}
+    session[:searched] = session[:searched].inject({}) { |memo, (k, v)| memo[k.to_sym] = v; memo}
+  end
 end
