@@ -9,5 +9,5 @@ $(document).ready(function(){
     autoclose: true,
     todayHighlight: true,
     toggleActive: true
-});
+  });
 });
