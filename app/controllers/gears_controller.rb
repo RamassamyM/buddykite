@@ -1,6 +1,7 @@
 # top-level class documentation comment HERE
 class GearsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
+  before_action :set_searched_in_session, only: [:index, :show]
 
   def index
     @search_infos = search_params
