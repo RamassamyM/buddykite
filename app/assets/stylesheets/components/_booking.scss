@@ -2,7 +2,6 @@
     position: fixed;
     top: 86px;
     right: 50px;
-    z-index: 10;
   }
 
 .btn-booking:hover{
@@ -12,12 +11,11 @@
 .frm-booking {
   padding: 10px;
   position: fixed;
-  top: 80px;
-  right: 20px;
+  top: 120px;
+  right: 50px;
   background-color: white;
   height:60%;
   width: 30%;
-  z-index: 9;
   box-shadow: 3px, 3px, 3px, gray;
   vertical-align: center;
   border-radius: 3px;

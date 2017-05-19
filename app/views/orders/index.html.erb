@@ -9,6 +9,7 @@
             <div class='order-body'>
               <h3><%= order.gear.brand %></h3>
               <p><%= order.gear.model %></p>
+              <p class="price"><%= compute_order_price(order) %>€ (<%= order.infos %>€/day)</p>
               <p>from : <%= order.start_at.strftime(format = '%d/%m/%Y') %></p>
               <p>to : <%= order.end_at.strftime(format = '%d/%m/%Y') %></p>
               <p><strong><%= compute_order_price(order) %>€</strong> (<%= gear_price(order) %>€/day)</p>
@@ -45,6 +46,7 @@
             <div class='order-body'>
               <h3><%= order.gear.brand %></h3>
               <p><%= order.gear.model %></p>
+              <p class="price"><%= compute_order_price(order) %>€ (<%= order.infos %>€/day)</p>
               <p>from : <%= order.start_at.strftime(format = '%d/%m/%Y') %></p>
               <p>to : <%= order.end_at.strftime(format = '%d/%m/%Y') %></p>
               <p><strong><%= compute_order_price(order) %>€</strong> (<%= gear_price(order) %>€/day)</p>
