@@ -1,4 +1,4 @@
-<%= simple_form_for :search, url: gears_path, html: { class: 'form-inline' }, method: :get do |f|%>
+<%= simple_form_for :search, url: gears_path, html: { class: 'form-inline', id: "searchform" }, method: :get do |f|%>
   <%= f.input :city, placeholder: "City", label: false, required: false,  input_html: { value: session[:searched][:city] } %>
   <%= f.input :start_date, placeholder: "Start date", label: false, required: false, input_html: { value: session[:searched][:start_date], class: "input-date" } %>
   <%= f.input :end_date, placeholder: "End date", label: false, required: false, input_html: { value: session[:searched][:end_date], class: "input-date" } %>
