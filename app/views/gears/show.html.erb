@@ -31,19 +31,22 @@
     </div>
   </div>
 
-  <div class="frm-booking">
-    <div class="bg-gray">
+
+  <div class="wrapper-booking-form">
+    <div class="block-price">
       <p> <%= (@gear.price / 100).round(0) %>€/day </p>
     </div>
-    <h2>Booking dates</h2>
-    <h3>TOTAL : </h3>
-    <%= render 'order_form', order: @order, gear: @gear %>
+    <div class="form-booking">
+      <h2>Book this gear</h2>
+      <h3>TOTAL : </h3>
+      <%= render 'order_form', order: @order, gear: @gear %>
+    </div>
+    <div>
+      <h2>Map</h2>
+      <div id="map" style="width: 100%; height: 600px;"></div>
+    </div>
+      </div>
   </div>
-  <div>
-    <h2>Map</h2>
-    <div id="map" style="width: 100%; height: 600px;"></div>
-  </div>
-</div>
 
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>

@@ -1,55 +1,24 @@
 <div class="navbar-wagon <%= navbar_home_change %>">
-  <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
     <%= image_tag "logo.png" %>
   <% end %>
-  <!-- Search form -->
   <div class="navbar-wagon-search <%= hide_search_bar %> ">
-    <%= render 'pages/search_form' %>
+    <%= render 'shared/search_form' %>
   </div>
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
-
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
-
-      <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
-          <% if current_user.photo? %>
-            <%= cl_image_tag current_user.photo.path, height: 40, width: 40, crop: :fill, class: "avatar-medium right-marged dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown"  %>
-          <% else %>
-            <%= image_tag 'user.png', class: "avatar-medium dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown"  %>
-          <% end %>
-          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-            <li>
-              <%= link_to orders_path do %>
-                <i class="fa fa-user"></i> <%= t(".orders", default: "Orders") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to root_path do %>
-                <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
-              <% end %>
-            </li>
-          </ul>
+          <%= avatar_to_display %>
+          <%= render 'shared/user_dropdown_menu' %>
         </div>
       </div>
-
     <% else %>
-
-      <!-- Login text link -->
-      <%= link_to t(".sign_in", default: "Sign up"), new_user_registration_path, class: "btn btn-sm btn-danger" %> &nbsp
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: " left-marged navbar-wagon-link" %>
-
+      <%= render 'shared/login_signup_block' %>
     <% end %>
   </div>
-
   <!-- Dropdown list appearing on mobile only -->
   <div class="navbar-wagon-item hidden-md hidden-lg">
     <div class="dropdown">

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var gear_address = $('#gear_address').get(0);
+  var gear_address = $('#search_address').get(0);
 
   if (gear_address) {
     var autocomplete = new google.maps.places.Autocomplete(gear_address, { types: ['geocode'] });
@@ -16,9 +16,9 @@ function onPlaceChanged() {
   var place = this.getPlace();
   var components = getAddressComponents(place);
 
-  $('#gear_address').trigger('blur').val(components.address);
+  $('#search_address').trigger('blur').val(components.city);
   // $('#gear_zip_code').val(components.zip_code);
-  // $('#gear_city').val(components.city);
+  $('#search-city').val(components.city);
   // if (components.country_code) {
   //   $('#gear_country').val(components.country_code);
   // }
@@ -58,4 +58,22 @@ function getAddressComponents(place) {
     city: city,
     country_code: country_code
   };
+}
+
+function geolocate() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var geolocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      var circle = new google.maps.Circle({
+        center: geolocation,
+        radius: position.coords.accuracy
+      });
+      var gear_address = $('#search_address').get(0);
+      var autocomplete = new google.maps.places.Autocomplete(gear_address, { types: ['geocode'] });
+      autocomplete.setBounds(circle.getBounds());
+    });
+  }
 }
