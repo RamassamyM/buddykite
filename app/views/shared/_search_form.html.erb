@@ -1,8 +1,10 @@
 <%= simple_form_for :search, url: gears_path, html: { class: 'form-inline', id: "searchform" }, method: :get do |f|%>
 
-  <%= f.input :address, placeholder: "Your location", label: false, required: false,  input_html: { value: session[:searched][:city], autofocus: true, onFocus: "geolocate()" } %>
+  <%= f.input :location, placeholder: "Your location", label: false, required: false,  input_html: { value: session[:searched][:location], onFocus: "geolocate()" } %>
 
-  <%= f.input :city, label: false, placeholder: "City", required: false %>
+  <%#= f.input :city, label: false, placeholder: "city", required: false, input_html: { type: "hidden" } %>
+  <%#= f.input :latitude, label: false, placeholder: "latitude", required: false, input_html: { type: "hidden" } %>
+  <%#= f.input :longitude, label: false, placeholder: "longitude", required: false, input_html: { type: "hidden"} %>
 
   <%= f.input :start_date, placeholder: "Start date", label: false, required: false, input_html: { value: session[:searched][:start_date], class: "input-date" } %>
 
