@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var gear_address = $('#gear_address').get(0);
+  var gear_address = $('#search_location').get(0);
 
   if (gear_address) {
     var autocomplete = new google.maps.places.Autocomplete(gear_address, { types: ['geocode'] });
@@ -16,19 +16,19 @@ function onPlaceChanged() {
   var place = this.getPlace();
   var components = getAddressComponents(place);
 
-  $('#gear_address').trigger('blur').val(components.address);
-  // $('#gear_zip_code').val(components.zip_code);
-  // $('#gear_city').val(components.city);
+  $('#search_location').trigger('blur').val([components.address, components.city, components.country_code].compact.join(', '));
+  // $('#search_zip_code').val(components.zip_code);
+  // $('#search_city').val(components.city);
+  // $('#search_latitude').val(components.latitude)
+  // $('#search_longitude').val(components.longitude)
   // if (components.country_code) {
-  //   $('#gear_country').val(components.country_code);
+  //   $('#search_country').val(components.country_code);
   // }
 }
 
 function getAddressComponents(place) {
-  // If you want lat/lng, you can look at:
-  // - place.geometry.location.lat()
-  // - place.geometry.location.lng()
-
+  // var latitude = place.geometry.location.lat();
+  // var longitude = place.geometry.location.lng()
   var street_number = null;
   var route = null;
   var zip_code = null;
@@ -58,4 +58,22 @@ function getAddressComponents(place) {
     city: city,
     country_code: country_code
   };
+}
+
+function geolocate() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var geolocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      var circle = new google.maps.Circle({
+        center: geolocation,
+        radius: position.coords.accuracy
+      });
+      var gear_address = $('#search_location').get(0);
+      var autocomplete = new google.maps.places.Autocomplete(gear_address, { types: ['geocode'] });
+      autocomplete.setBounds(circle.getBounds());
+    });
+  }
 }
